@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+{% for picture in pictures %}
+    <h3 class="nom"> toto </h3>
+    <span> {{ picture.name }} </span>
+    <span> {{ picture.description }} </span>
+{% endfor %}
+
+<form action=" {{ path('getPictures') }} " method="get">
+    <input type="text" name="description" id="description" value="" placeholder="Description">
+    <input type="text" name="name" id="name" value="" placeholder="Name">
+    <select name="type">
+        <option value="">Choisir un type</option>
+        {% for type in types %}
+            <option value="{{ type.name }}">{{ type.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Valider">
+</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %} Mes tâches {% endblock %}
+{% block body %}
+    <form action="{{ path('taskByType') }}" method="get">
+        <input type="text" name="type" id="type" value="" placeholder="Ex : Rendez-vous">
+        <input type="submit" value="Trier">
+    </form>
+    {% for task in tasks %}
+        <div>{{ task.name }}</div>
+        <div>{{ task.description }}</div>
+        <div>Type: {{ task.type }}</div>
+        <div>Créé le: {{ task.creationDate|format_datetime('full', 'none', locale='fr') }}</div>
+        {% if task.type == 'RDV' %}
+            <div>Rendez-vous le: {{ task.limitDate|format_datetime('full', 'none', locale='fr') }}</div>
+        {%  else %}
+            <div>Date limite: {{ task.limitDate|format_datetime('full', 'none', locale='fr') }}</div>
+        {% endif %}
+        <div><img src="../public/upload_directory/{{ task.illustration }}" alt="{{ task.illustration }}"></div>
+    {% endfor %}
+{% endblock %}
